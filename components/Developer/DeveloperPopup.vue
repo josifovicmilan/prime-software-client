@@ -145,11 +145,11 @@
 
 <script>
 
-import AppPopup from "@/components/popup/AppPopup";
-import AppInput from "@/components/utility/AppInput";
-import AppSelect from "@/components/utility/AppSelect";
-import AppButton from "@/components/utility/AppButton";
-import AppTextarea from "@/components/utility/AppTextarea";
+import AppPopup from "@/components/Popup/AppPopup";
+import AppInput from "@/components/Utility/AppInput";
+import AppSelect from "@/components/Utility/AppSelect";
+import AppButton from "@/components/Utility/AppButton";
+import AppTextarea from "@/components/Utility/AppTextarea";
 
 export default {
    components:{
