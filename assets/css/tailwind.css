@@ -13,7 +13,9 @@
     .btn-blue{
       @apply bg-blue-400 focus:bg-blue-500 text-white;
     }
-
+    .btn-yellow{
+      @apply bg-yellow-400 focus:bg-yellow-500 text-white;
+    }
     .icon-blue{
         @apply text-blue-400;
     }

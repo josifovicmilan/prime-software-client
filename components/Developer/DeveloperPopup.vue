@@ -167,7 +167,6 @@ export default {
     data(){
         return{
           errors:[],
-          editing: undefined,
           newDeveloper:{
             devName: '',
             email: '',
@@ -188,6 +187,7 @@ export default {
     },
     methods:{
       addDeveloper(){
+        this.errors = [];
         this.$store.dispatch('addDeveloper',{
           developer: this.developer
         }).then((response)=>{
@@ -200,6 +200,7 @@ export default {
         })
       },
       updateDeveloper(){
+        this.errors = [];
           this.$store.dispatch('updateDeveloper', {
             developer: this.developer
           }).then((response) =>{
@@ -208,22 +209,34 @@ export default {
             }
             else{
               this.$emit('closePopup')
+
             }
           })
       }
     },
     computed:{
-      developer(){
+      developer:{
+        get: function(){
+          console.log('getting developer')
+          if(this.editDeveloper !== undefined ){
+            return {...this.editDeveloper};
+          }
+          else{
+            return this.newDeveloper;
+          }
+        },
+        set: function(newValue){
+          this.developer = newValue
+        }
+      },
+    editing(){
         if(this.editDeveloper !== undefined){
-          this.editing = true;
-          return {...this.editDeveloper};
+          return true;
         }
-        else{
-          this.editing = false;
-          return this.newDeveloper;
-        }
+        return false;
       }
-    }
+    },
+
 }
 </script>
 

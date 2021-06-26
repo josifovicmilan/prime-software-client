@@ -1,9 +1,10 @@
 <template>
   <div class=" flex items-center py-2 px-4 ">
-                <img
-                  :src="developer.picture"
-                   class="rounded-full border-2 border-gray-500 h-12 w-12 object-cover mr-4 ">
-
+                <button class="rounded-full bg-gray-200 cursor-pointer hover:bg-gray-300 border-white h-6 w-6 mr-4 flex items-center justify-center" @click="selectDeveloper">
+                  <svg v-if="developerSelected"  class="h-6 w-6 bg-green-600 rounded-full text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                </button>
                 <span class="flex-1">{{developer.devName}}</span>
                 <span class="flex-1">${{developer.price}}</span>
                 <span class="flex-1">{{developer.tehnology}}</span>

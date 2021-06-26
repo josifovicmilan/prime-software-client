@@ -1,6 +1,5 @@
 const validateDeveloper = function(data){
   let error = ''
-  console.log(data.developer)
   if(data.developer.devName === ""){
     error = 'Name is required field';
     return error;
@@ -50,7 +49,7 @@ export const state = () => ({
       email: 'pera@test.com',
       phone: '064123123',
       location: 'Krusevac',
-      picture: 'https://unsplash.com/photos/ZHvM3XIOHoE',
+      picture: 'https://images.unsplash.com/photo-1590086782957-93c06ef21604?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8bWFufGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60',
       price: 10,
       tehnology: 'Javascript',
       desc: 'lorem ipsum dummy data',
@@ -64,7 +63,7 @@ export const state = () => ({
       email: 'mika@test.com',
       phone: '064890123',
       location: 'Beograd',
-      picture: 'https://unsplash.com/photos/C8Ta0gwPbQg',
+      picture: 'https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80',
       price: 12,
       tehnology: 'Python',
       desc: 'lorem ipsum dummy data',
@@ -77,8 +76,8 @@ export const state = () => ({
 
 export const mutations = {
   addDeveloper(state, developer){
-    console.log(developer)
-    developer.data.id = state.developers.length + 1;
+    console.log(state.developers.map(developer => developer.id))
+    developer.data.id = Math.max(...state.developers.map(developer => developer.id))+1;
     state.developers.push(developer.data)
   },
   deleteDeveloper(state, data){
@@ -86,27 +85,35 @@ export const mutations = {
   },
   updateDeveloper(state, data){
 
+    state.developers = state.developers.map(developer => {
+      if(developer.id === data.data.id){
+        return data.data
+      }
+        return developer
+    });
   }
 }
 
 export const actions = {
   addDeveloper(context, payload){
-    const error = validateDeveloper(payload)
-    if(error !== 0){
+    const error = validateDeveloper(payload);
+    if(error !== ''){
       return {error: error}
     }
     context.commit('addDeveloper', {data:payload.developer})
+    return {message: 'Succesfully added developer'}
+
   },
   deleteDeveloper(context, payload){
     context.commit('deleteDeveloper', {id: payload.id})
   },
   updateDeveloper(context, payload){
     const error = validateDeveloper(payload);
-    if(error !== 0){
+    if(error !== ''){
       return {error: error};
     }
-    context.commit('updateDeveloper',{data: payload.developer})
-
+    context.commit('updateDeveloper',{data: payload.developer});
+    return {message: 'Succesfully updated developer'}
   }
 }
 export const getters = {
