@@ -1,0 +1,26 @@
+@import '~assets/css/fonts';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components{
+    .btn-green{
+      @apply bg-green-500 focus:bg-green-700 text-white;
+    }
+    .btn-red{
+      @apply bg-red-400 focus:bg-red-500 text-white;
+    }
+    .btn-blue{
+      @apply bg-blue-400 focus:bg-blue-500 text-white;
+    }
+
+    .icon-blue{
+        @apply text-blue-400;
+    }
+    .icon-red{
+        @apply text-red-400;
+    }
+    .icon-green{
+        @apply text-green-500;
+    }
+  }
